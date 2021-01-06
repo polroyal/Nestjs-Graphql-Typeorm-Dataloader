@@ -1,7 +1,7 @@
 // import { from } from "rxjs";
 import { Field, ObjectType } from 'type-graphql';
 import { BaseEntity } from 'typeorm';
-class Auther extends BaseEntity 
+
 
     import {
         Column,
@@ -13,10 +13,11 @@ class Auther extends BaseEntity
     } from 'typeorm';
 
     import Book from './book.entity';
-
+    
     @ObjectType()
     @Entity({ name: 'authors' }) 
-    export default class Author {
+    
+    export default class Author extends BaseEntity {
 
         @Field()
         @PrimaryGeneratedColumn()
@@ -36,5 +37,5 @@ class Auther extends BaseEntity
         bookConnection: Promise<Book[]>;
 
     }
-
+    
 
