@@ -1,8 +1,13 @@
-import { Query } from "@nestjs/common";
-import { Resolver } from "@nestjs/graphql";
-import BookGenre from "src/db/models/book-genre.entity";
-import RepoService from "src/repo.service";
-import { Arg, Args, Mutation } from "type-graphql";
+import { Query, Args, Mutation, Parent, ResolverProperty, Resolver } from '@nestjs/common';
+import BookGenre from 'src/db/models/book-genre.entity';
+import RepoService from 'src/repo.service';
+import Author from '../db/models/author.entity';
+import Book from '../db/models/book.entity';
+import BookInput from './input/book.input';
+import Genre from '../db/models/genre.entity';
+import GenreInput from './input/genre.input';
+import BookGenreInput from './input/book-genre.input';
+import { Arg } from 'type-graphql';
 
 
 @Resolver()
@@ -21,7 +26,7 @@ class BookGenreResolver {
     }
 
     @Query(() => [BookGenre])
-    public async bookGenres():Promise<BookGenre[]> {
+    public async bookGenres(): Promise<BookGenre[]> {
         return this.repoService.bookGenreRepo.find();
     }
 
