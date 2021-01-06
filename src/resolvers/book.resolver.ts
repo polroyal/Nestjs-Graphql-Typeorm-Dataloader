@@ -21,7 +21,7 @@ class BookResolver {
     @Mutation(() => Book)
     public async createBook(@Args('data') input: BookInput): Promise<Book> {
         const book = new Book();
-        book.title = input.title;
+        book.name = input.name;
         return this.repoService.bookRepo.save(book);
     }
     @ResolveProperty()

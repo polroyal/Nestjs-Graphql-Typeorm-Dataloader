@@ -32,7 +32,7 @@ class GenreResolver {
         { genreId: parent.id}, relations: ['Book']});
 
         const books: Book[] = [];
-        bookGenres.forEach(async bookGenre => books.push(await bookGenre.book));
+        bookGenres.forEach(async bookGenre => books.push(bookGenre.book));
         return books;
     }
 }

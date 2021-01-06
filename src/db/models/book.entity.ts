@@ -49,6 +49,7 @@ import { Field, ObjectType } from 'type-graphql';
 
         @OneToMany(() => BookGenre, bookGenre => bookGenre.genre) 
         genreConnection: Promise<BookGenre[]>;
+        name: any;
     }
 
 
