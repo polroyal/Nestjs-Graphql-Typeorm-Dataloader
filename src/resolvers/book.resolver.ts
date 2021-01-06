@@ -2,7 +2,6 @@ import { Args, Mutation, Parent, Query, ResolveProperty, Resolver } from '@nestj
 import Author from 'src/db/models/author.entity';
 import Book from 'src/db/models/book.entity';
 import RepoService from 'src/repo.service';
-import BookGenreResolver from './book-genre.resolver';
 import BookInput from './input/book.input';
 
 
@@ -20,18 +19,15 @@ class BookResolver {
     }
 
     @Mutation(() => Book)
-    public async createBook(@Args('data') input: BookInput):
-        Promise<Book> {
-            const book = this.repoService.boo
-        }
-}
-
-
-
-
-@ResolveProperty()
-public async author(@Parent() parent): Promise<Author> {
+    public async createBook(@Args('data') input: BookInput): Promise<Book> {
+        const book = new Book();
+        book.title = input.title;
+        return this.repoService.bookRepo.save(book);
+    }
+    @ResolveProperty()
+    public async author(@Parent() parent): Promise<Author> {
     return this.repoService.authorRepo.findOne(parent.authorId);
+    }
 }
 
 export default BookResolver;
